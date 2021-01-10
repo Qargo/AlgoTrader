@@ -59,7 +59,6 @@ SAC_PARAMS = {
     "buffer_size": 100000,
     "learning_rate": 0.0001,
     "learning_starts": 100,
-    "batch_size": 64,
     "ent_coef": "auto_0.1",
 }
 
@@ -1137,7 +1136,7 @@ CSI_300_TICKER = [
 ]
 
 # self defined
- MULTIPLE_STOCK_TICKER = ["AAPL", "MSFT", "AMZN", "SHOP", "TSLA", "TTCF", "UUUU"]
+MULTIPLE_STOCK_TICKER = ["AAPL", "MSFT", "AMZN", "SHOP", "TSLA", "TTCF", "UUUU"]
 # MULTIPLE_STOCK_TICKER = NAS_100_TICKER
 
 ############## Stock Ticker Setup ends ##############
