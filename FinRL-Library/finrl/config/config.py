@@ -66,6 +66,10 @@ SAC_PARAMS = {
 ############## Stock Ticker Setup starts ##############
 SINGLE_TICKER = ["AAPL"]
 
+# self defined
+MULTIPLE_STOCK_TICKER = ["AAPL", "MSFT", "IBM"]
+# MULTIPLE_STOCK_TICKER = ["AAPL", "MSFT", "AMZN", "SHOP", "TSLA", "TTCF", "UUUU"]
+
 # check https://wrds-www.wharton.upenn.edu/ for U.S. index constituents
 # Dow 30 constituents at 2019/01
 DOW_30_TICKER = [
@@ -1134,10 +1138,6 @@ CSI_300_TICKER = [
     "300601.SZ",
     "300628.SZ",
 ]
-
-# self defined
-MULTIPLE_STOCK_TICKER = ["AAPL", "MSFT", "AMZN", "SHOP", "TSLA", "TTCF", "UUUU"]
-# MULTIPLE_STOCK_TICKER = NAS_100_TICKER
 
 ############## Stock Ticker Setup ends ##############
 ########################################################
