@@ -67,7 +67,7 @@ SAC_PARAMS = {
 SINGLE_TICKER = ["AAPL"]
 
 # self defined
-MULTIPLE_STOCK_TICKER = ["AAPL", "MSFT", "IBM"]
+MULTIPLE_STOCK_TICKER = ["AAPL", "MSFT", "FB"]
 # MULTIPLE_STOCK_TICKER = ["AAPL", "MSFT", "AMZN", "SHOP", "TSLA", "TTCF", "UUUU"]
 
 # check https://wrds-www.wharton.upenn.edu/ for U.S. index constituents
