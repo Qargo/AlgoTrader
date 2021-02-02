@@ -80,6 +80,13 @@ class DRLAgent:
         end = time.time()
         return account_memory[0], actions_memory[0]
 
+    @staticmethod
+    def load_model(model_name, path):
+        if model_name not in MODELS:
+            raise NotImplementedError()
+        model = MODELS[model_name].load(path)
+        return model
+
     def __init__(self, env):
         self.env = env
 
@@ -92,7 +99,7 @@ class DRLAgent:
         verbose=1,
     ):
         if model_name not in MODELS:
-            raise NotImplementedException()
+            raise NotImplementedError()
 
         if model_kwargs is None:
             model_kwargs = MODEL_KWARGS[model_name]
@@ -112,6 +119,9 @@ class DRLAgent:
             **model_kwargs,
         )
         return model
+
+    def save_model(self, model, path):
+        model.save(path)
 
     def train_model(self, model, tb_log_name, total_timesteps=5000):
         model = model.learn(total_timesteps=total_timesteps, tb_log_name=tb_log_name)

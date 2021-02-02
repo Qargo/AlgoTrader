@@ -85,9 +85,19 @@ def train_one():
         tb_log_name='sac', total_timesteps=80000
     )
 
+    print("==============Save Trained Model==============")
+    path = "./" + config.TRAINED_MODEL_DIR + "/trained_sac"
+    agent.save_model(model=trained_sac, path=path)
+
+    print("=============Delete Trained Model=============")
+    del trained_sac
+
+    print("==============Load Saved Model================")
+    saved_sac = DRLAgent.load_model(model_name="sac", path=path)
+
     print("==============Start Trading===========")
     df_account_value, df_actions = DRLAgent.DRL_prediction(
-        model=trained_sac, test_data=trade, test_env=env_trade, test_obs=obs_trade
+        model=saved_sac, test_data=trade, test_env=env_trade, test_obs=obs_trade
     )
     df_account_value.to_csv(
         "./" + config.RESULTS_DIR + "/df_account_value_" + now + ".csv"
