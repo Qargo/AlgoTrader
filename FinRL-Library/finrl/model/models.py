@@ -86,7 +86,7 @@ class DRLAgent:
         return account_memory[0], actions_memory[0]
 
     @staticmethod
-    def DRL_prediction(model, test_data, test_env, test_obs):
+    def DRL_prediction_old(model, test_data, test_env, test_obs):
         """make a prediction"""
         start = time.time()
         account_memory = []

@@ -72,7 +72,7 @@ def train_one():
 
     e_train_gym = StockTradingEnv(df=train, **env_kwargs)
 
-    e_trade_gym = StockTradingEnv(df=trade, turbulence_threshold=250, **env_kwargs)
+    e_trade_gym = StockTradingEnv(df=trade, turbulence_threshold=380, **env_kwargs)
     env_train, _ = e_train_gym.get_sb_env()
     env_trade, obs_trade = e_trade_gym.get_sb_env()
 
@@ -97,8 +97,9 @@ def train_one():
     saved_sac = DRLAgent.load_model(model_name="sac", path=path)
 
     print("==============Start Trading===========")
-    df_account_value, df_actions = DRLAgent.DRL_prediction(
+    df_account_value, df_actions = DRLAgent.DRL_prediction_old(
         model=saved_sac, test_data=trade, test_env=env_trade, test_obs=obs_trade
+#        model=saved_sac, environment=e_trade_gym
     )
     df_account_value.to_csv(
         "./" + config.RESULTS_DIR + "/df_account_value_" + now + ".csv"
@@ -106,6 +107,6 @@ def train_one():
     df_actions.to_csv("./" + config.RESULTS_DIR + "/df_actions_" + now + ".csv")
 
     print("==============Get Backtest Results===========")
-    perf_stats_all = backtest_stats(df_account_value)
+    perf_stats_all = backtest_stats(account_value=df_account_value)
     perf_stats_all = pd.DataFrame(perf_stats_all)
     perf_stats_all.to_csv("./" + config.RESULTS_DIR + "/perf_stats_all_" + now + ".csv")
