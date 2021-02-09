@@ -99,8 +99,10 @@ def train_one():
     print("==============Start Trading===========")
     df_account_value, df_actions = DRLAgent.DRL_prediction_old(
         model=saved_sac, test_data=trade, test_env=env_trade, test_obs=obs_trade
-#        model=saved_sac, environment=e_trade_gym
     )
+#    df_account_value, df_actions = DRLAgent.DRL_prediction(
+#        model=saved_sac, environment=e_trade_gym
+#    )
     df_account_value.to_csv(
         "./" + config.RESULTS_DIR + "/df_account_value_" + now + ".csv"
     )
