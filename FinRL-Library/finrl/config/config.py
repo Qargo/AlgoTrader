@@ -17,9 +17,9 @@ import os
 # DATASET_DIR = PACKAGE_ROOT / "data"
 
 # data
-TRAINING_DATA_FILE = "data/ETF_SPY_2009_2020.csv"
-TURBULENCE_DATA = "data/dow30_turbulence_index.csv"
-TESTING_DATA_FILE = "test.csv"
+# TRAINING_DATA_FILE = "data/ETF_SPY_2009_2020.csv"
+# TURBULENCE_DATA = "data/dow30_turbulence_index.csv"
+# TESTING_DATA_FILE = "test.csv"
 
 # now = datetime.datetime.now()
 # TRAINED_MODEL_DIR = f"trained_models/{now}"
@@ -69,6 +69,34 @@ SINGLE_TICKER = ["AAPL"]
 # self defined
 # MULTIPLE_STOCK_TICKER = ["AAPL", "MSFT", "AMZN", "SHOP", "TSLA", "TTCF", "UUUU"]
 MULTIPLE_STOCK_TICKER = ["AAPL", "MSFT", "AMZN", "TSLA", "UUUU"]
+
+SRI_KEHATI_TICKER = [
+    "AALI.JK",
+    "ADHI.JK",
+    "ASII.JK",
+    "BBCA.JK", 
+    "BBNI.JK",
+    "BBRI.JK",
+    "BBTN.JK",
+    "BMRI.JK",
+    "BSDE.JK",
+    "INDF.JK",
+    "JPFA.JK",
+    "JSMR.JK",
+    "KLBF.JK",
+    "PGAS.JK",
+    "PJAA.JK",
+    "PPRO.JK",
+    "SIDO.JK",
+    "SMGR.JK",
+    "TINS.JK",
+    "TLKM.JK",
+    "UNTR.JK",
+    "UNVR.JK",
+    "WIKA.JK",
+    "WSKT.JK",
+    "WTON.JK"
+]
 
 # check https://wrds-www.wharton.upenn.edu/ for U.S. index constituents
 # Dow 30 constituents at 2019/01
@@ -1139,5 +1167,127 @@ CSI_300_TICKER = [
     "300628.SZ",
 ]
 
+# Check https://www.bnains.org/archives/histocac/compocac.php for CAC 40 constituents
+# CAC 40 constituents at 2019/01
+CAC_40_TICKER = [
+    "AC.PA",
+    "AI.PA",
+    "AIR.PA",
+    "MT.AS",
+    "ATO.PA",
+    "CS.PA",
+    "BNP.PA",
+    "EN.PA",
+    "CAP.PA",
+    "CA.PA",
+    "ACA.PA",
+    "BN.PA",
+    "DSY.PA",
+    "ENGI.PA",
+    "EL.PA",
+    "RMS.PA",
+    "KER.PA",
+    "OR.PA",
+    "LR.PA",
+    "MC.PA",
+    "ML.PA",
+    "ORA.PA",
+    "RI.PA",
+    "PUGOY",
+    "PUB.PA",
+    "RNO.PA",
+    "SAF.PA",
+    "SGO.PA",
+    "SAN.PA",
+    "SU.PA",
+    "GLE.PA",
+    "SW.PA",
+    "STM.PA",
+    "FTI.PA",
+    "FP.PA",
+    "URW.AS",
+    "FR.PA",
+    "VIE.PA",
+    "DG.PA",
+    "VIV.PA",
+]
+
 ############## Stock Ticker Setup ends ##############
-########################################################
+
+###Jan 20,2020, added by YuQing Huang###################
+################FX Ticker Setup Start###################
+FX_TICKER = ["AUDCAD",
+            "AUDCHF",
+            "AUDJPY",
+            "AUDNZD",
+            "AUDSGD",
+            "AUDUSD",
+            "AUDUSD",
+            "AUDUSD",
+            "AUDUSD",
+            "AUDUSD",
+            "AUDUSD",
+            "AUDUSD",
+            "CADCHF",
+            "CADHKD",
+            "CADJPY",
+            "CHFJPY",
+            "CHFSGD",
+            "EURAUD",
+            "EURCAD",
+            "EURCHF",
+            "EURCHF",
+            "EURCHF",
+            "EURCZK",
+            "EURGBP",
+            "EURHKD",
+            "EURHUF",
+            "EURJPY",
+            "EURNOK",
+            "EURNZD",
+            "EURPLN",
+            "EURRUB",
+            "EURSEK",
+            "EURSGD",
+            "EURTRY",
+            "EURTRY",
+            "EURUSD",
+            "GBPAUD",
+            "GBPAUD",
+            "GBPAUD",
+            "GBPCAD",
+            "GBPCHF",
+            "GBPJPY",
+            "GBPNZD",
+            "GBPUSD",
+            "HKDJPY",
+            "NZDCAD",
+            "NZDCHF",
+            "NZDJPY",
+            "NZDUSD",
+            "SGDJPY",
+            "TRYJPY",
+            "USDCAD",
+            "USDCHF",
+            "USDCNH",
+            "USDCZK",
+            "USDHKD",
+            "USDHUF",
+            "USDILS",
+            "USDJPY",
+            "USDMXN",
+            "USDNOK",
+            "USDPLN",
+            "USDRON",
+            "USDRUB",
+            "USDSEK",
+            "USDSGD",
+            "USDTHB",
+            "USDTRY",
+            "USDZAR",
+            "XAGUSD",
+            "XAUUSD",
+            "ZARJPY",
+            "EURDKK"
+]
+################FX Ticker Setup End###################

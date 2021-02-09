@@ -108,16 +108,19 @@ class FeatureEngineer:
         :return: (df) pandas dataframe
         """
         df = data.copy()
-        turbulence_index = self.calcualte_turbulence(df)
+        turbulence_index = self.calculate_turbulence(df)
         df = df.merge(turbulence_index, on="date")
         df = df.sort_values(["date", "tic"]).reset_index(drop=True)
         return df
 
-    def calcualte_turbulence(self, data):
+    def calculate_turbulence(self, data):
         """calculate turbulence index based on dow 30"""
         # can add other market assets
         df = data.copy()
         df_price_pivot = df.pivot(index="date", columns="tic", values="close")
+        # use returns to calculate turbulence
+        df_price_pivot = df_price_pivot.pct_change()
+
         unique_date = df.date.unique()
         # start after a year
         start = 252
@@ -126,12 +129,17 @@ class FeatureEngineer:
         count = 0
         for i in range(start, len(unique_date)):
             current_price = df_price_pivot[df_price_pivot.index == unique_date[i]]
+            # use one year rolling window to calcualte covariance
             hist_price = df_price_pivot[
-                [n in unique_date[0:i] for n in df_price_pivot.index]
+                (df_price_pivot.index < unique_date[i])
+                & (df_price_pivot.index >= unique_date[i - 252])
             ]
-            cov_temp = hist_price.cov()
-            current_temp = current_price - np.mean(hist_price, axis=0)
-            temp = current_temp.values.dot(np.linalg.inv(cov_temp)).dot(
+            # Drop tickers which has number missing values more than the "oldest" ticker
+            filtered_hist_price = hist_price.iloc[hist_price.isna().sum().min():].dropna(axis=1)
+
+            cov_temp = filtered_hist_price.cov()
+            current_temp = current_price[[x for x in filtered_hist_price]] - np.mean(filtered_hist_price, axis=0)
+            temp = current_temp.values.dot(np.linalg.pinv(cov_temp)).dot(
                 current_temp.values.T
             )
             if temp > 0:
