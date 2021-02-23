@@ -1,7 +1,4 @@
-import json
-import logging
 import os
-import time
 from argparse import ArgumentParser
 import datetime
 
@@ -36,7 +33,6 @@ def main():
         import finrl.autotrain.training
 
         finrl.autotrain.training.train_one()
-
     elif options.mode == "download_data":
         from finrl.marketdata.yahoodownloader import YahooDownloader
 

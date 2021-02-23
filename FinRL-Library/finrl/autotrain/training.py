@@ -1,8 +1,5 @@
 import pandas as pd
-import numpy as np
 import matplotlib
-import matplotlib.pyplot as plt
-from sklearn import preprocessing
 
 matplotlib.use("Agg")
 import datetime
@@ -26,6 +23,7 @@ def train_one():
         end_date=config.END_DATE,
         ticker_list=config.MULTIPLE_STOCK_TICKER,
     ).fetch_data()
+#    df = pd.read_csv('20210213-18h05.csv')
     print("==============Start Feature Engineering===========")
     fe = FeatureEngineer(
         use_technical_indicator=True,
