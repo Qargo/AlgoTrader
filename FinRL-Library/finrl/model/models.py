@@ -2,13 +2,13 @@
 import pandas as pd
 import numpy as np
 import time
-import gym
+# import gym
 
 # RL models from stable-baselines
 # from stable_baselines import SAC
 # from stable_baselines import TD3
 
-from stable_baselines3.ppo import MlpPolicy
+# from stable_baselines3.ppo import MlpPolicy
 from stable_baselines3.common.vec_env import DummyVecEnv
 
 from stable_baselines3 import DDPG
@@ -24,11 +24,11 @@ from finrl.env.env_stocktrading import StockTradingEnv
 from stable_baselines3 import A2C
 from stable_baselines3 import PPO
 from stable_baselines3 import TD3
-from stable_baselines3.td3.policies import MlpPolicy
-from stable_baselines3.common.noise import (
-    NormalActionNoise,
-    OrnsteinUhlenbeckActionNoise,
-)
+# from stable_baselines3.td3.policies import MlpPolicy
+# from stable_baselines3.common.noise import (
+#    NormalActionNoise,
+#    OrnsteinUhlenbeckActionNoise,
+# )
 
 from stable_baselines3 import SAC
 
@@ -53,18 +53,18 @@ class DRLAgent:
 
     Methods
     -------
-    train_PPO()
-        the implementation for PPO algorithm
-    train_A2C()
-        the implementation for A2C algorithm
-    train_DDPG()
-        the implementation for DDPG algorithm
-    train_TD3()
-        the implementation for TD3 algorithm
-    train_SAC()
-        the implementation for SAC algorithm
-    DRL_prediction()
-        make a prediction in a test dataset and get results
+        train_PPO()
+            the implementation for PPO algorithm
+        train_A2C()
+            the implementation for A2C algorithm
+        train_DDPG()
+            the implementation for DDPG algorithm
+        train_TD3()
+            the implementation for TD3 algorithm
+        train_SAC()
+            the implementation for SAC algorithm
+        DRL_prediction()
+            make a prediction in a test dataset and get results
     """
 
     @staticmethod
@@ -76,28 +76,15 @@ class DRLAgent:
         test_env.reset()
         for i in range(len(environment.df.index.unique())):
             action, _states = model.predict(test_obs)
-            account_memory = test_env.env_method(method_name="save_asset_memory")
-            actions_memory = test_env.env_method(method_name="save_action_memory")
+            #account_memory = test_env.env_method(method_name="save_asset_memory")
+            #actions_memory = test_env.env_method(method_name="save_action_memory")
             test_obs, rewards, dones, info = test_env.step(action)
+            if i == (len(environment.df.index.unique()) - 2):
+              account_memory = test_env.env_method(method_name="save_asset_memory")
+              actions_memory = test_env.env_method(method_name="save_action_memory")
             if dones[0]:
                 print("hit end!")
-
                 break
-        return account_memory[0], actions_memory[0]
-
-    @staticmethod
-    def DRL_prediction_old(model, test_data, test_env, test_obs):
-        """make a prediction"""
-        start = time.time()
-        account_memory = []
-        actions_memory = []
-        for i in range(len(test_data.index.unique())):
-            action, _states = model.predict(test_obs)
-            test_obs, rewards, dones, info = test_env.step(action)
-            if i == (len(test_data.index.unique()) - 2):
-                account_memory = test_env.env_method(method_name="save_asset_memory")
-                actions_memory = test_env.env_method(method_name="save_action_memory")
-        end = time.time()
         return account_memory[0], actions_memory[0]
 
     @staticmethod

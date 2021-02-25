@@ -33,9 +33,6 @@ RESULTS_DIR = f"results"
 ## time_fmt = '%Y-%m-%d'
 # START_DATE = "2010-06-29"
 # END_DATE = "2020-12-31"
-
-# START_TRADE_DATE = "2019-01-01"
-
 START_DATE = "2000-01-01"
 END_DATE = "2021-01-01"
 
@@ -1215,6 +1212,40 @@ CAC_40_TICKER = [
     "VIE.PA",
     "DG.PA",
     "VIV.PA",
+]
+
+# DAX 30 constituents at 2021/02
+DAX_30_TICKER = [
+	"DHER.DE", 
+	"RWE.DE", 
+	"FRE.DE",
+	"MTX.DE",
+	"MRK.DE", 
+	"LIN.DE", 
+	"ALV.DE", 
+	"VNA.DE", 
+	"EOAN.DE", 
+	"HEN3.DE", 
+	"DAI.DE", 
+	"DB1.DE", 
+	"DPW.DE", 
+	"DWNI.DE", 
+	"BMW.DE", 
+	"DTE.DE", 
+	"VOW3.DE", 
+	"MUV2.DE", 
+	"1COV.DE", 
+	"SAP.DE", 
+	"FME.DE", 
+	"BAS.DE", 
+	"BAYN.DE", 
+	"BEI.DE", 
+	"CON.DE", 
+	"SIE.DE", 
+	"ADS.DE", 
+	"HEI.DE", 
+	"DBK.DE", 
+	"IFX.DE"
 ]
 
 ############## Stock Ticker Setup ends ##############
