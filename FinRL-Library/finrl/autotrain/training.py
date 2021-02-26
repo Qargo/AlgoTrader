@@ -3,7 +3,6 @@ import matplotlib
 
 matplotlib.use("Agg")
 import datetime
-import itertools
 
 from finrl.config import config
 from finrl.marketdata.yahoodownloader import YahooDownloader
@@ -35,19 +34,9 @@ def train_one():
 
     processed = fe.preprocess_data(df)
 
-    list_ticker = processed["tic"].unique().tolist()
-    list_date = list(pd.date_range(processed['date'].min(),processed['date'].max()).astype(str))
-    combination = list(itertools.product(list_date,list_ticker))
-
-    processed_full = pd.DataFrame(combination,columns=["date","tic"]).merge(processed,on=["date","tic"],how="left")
-    processed_full = processed_full[processed_full['date'].isin(processed['date'])]
-    processed_full = processed_full.sort_values(['date','tic'])
-
-    processed_full = processed_full.fillna(0)
-
     # Training & Trade data split
-    train = data_split(processed_full, config.START_DATE, config.START_TRADE_DATE)
-    trade = data_split(processed_full, config.START_TRADE_DATE, config.END_DATE)
+    train = data_split(processed, config.START_DATE, config.START_TRADE_DATE)
+    trade = data_split(processed, config.START_TRADE_DATE, config.END_DATE)
 
     # data normalization
     # feaures_list = list(train.columns)
@@ -103,14 +92,11 @@ def train_one():
     del trained_sac
 
     print("==============Load Saved Model================")
-    saved_sac = DRLAgent.load_model(model_name="sac", path=path)
+    saved_model = DRLAgent.load_model(model_name="sac", path=path)
 
     print("==============Start Trading===========")
-#    df_account_value, df_actions = DRLAgent.DRL_prediction_old(
-#        model=saved_sac, test_data=trade, test_env=env_trade, test_obs=obs_trade
-#    )
     df_account_value, df_actions = DRLAgent.DRL_prediction(
-        model=saved_sac, environment=e_trade_gym
+        model=saved_model, environment=e_trade_gym
     )
     df_account_value.to_csv(
         "./" + config.RESULTS_DIR + "/df_account_value_" + now + ".csv"
