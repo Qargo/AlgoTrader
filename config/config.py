@@ -13,7 +13,7 @@ import os
 # PACKAGE_ROOT = pathlib.Path(finrl.__file__).resolve().parent
 # PACKAGE_ROOT = pathlib.Path().resolve().parent
 
-TRAINED_MODEL_DIR = f"trained_models"
+# TRAINED_MODEL_DIR = PACKAGE_ROOT / "trained_models"
 # DATASET_DIR = PACKAGE_ROOT / "data"
 
 # data
@@ -31,8 +31,10 @@ RESULTS_DIR = f"results"
 
 
 ## time_fmt = '%Y-%m-%d'
-START_DATE = "2000-01-01"
-END_DATE = "2021-01-01"
+START_DATE = "2010-06-29"
+# END_DATE = "2020-12-31"
+# START_DATE = "2000-01-01"
+END_DATE = "2020-12-31"
 
 START_TRADE_DATE = "2019-01-01"
 
@@ -41,7 +43,7 @@ DEFAULT_DATA_COLUMNS = ["date", "tic", "close"]
 
 ## stockstats technical indicator column names
 ## check https://pypi.org/project/stockstats/ for different names
-TECHNICAL_INDICATORS_LIST = ["macd","boll_ub","boll_lb","rsi_30", "cci_30", "dx_30","close_30_sma","close_60_sma"]
+TECHNICAL_INDICATORS_LIST = ["macd", "rsi_30", "cci_30", "dx_30", "close_20_sma", "close_50_sma"]
 
 
 ## Model Parameters
@@ -59,7 +61,6 @@ SAC_PARAMS = {
     "buffer_size": 100000,
     "learning_rate": 0.0001,
     "learning_starts": 100,
-    "batch_size": 64,
     "ent_coef": "auto_0.1",
 }
 
@@ -68,32 +69,35 @@ SAC_PARAMS = {
 SINGLE_TICKER = ["AAPL"]
 
 # self defined
+# MULTIPLE_STOCK_TICKER = ["AAPL", "MSFT", "AMZN", "SHOP", "TSLA", "TTCF", "UUUU"]
+MULTIPLE_STOCK_TICKER = ["AAPL", "MSFT", "AMZN", "TSLA", "UUUU"]
+
 SRI_KEHATI_TICKER = [
-		"AALI.JK",
-		"ADHI.JK",
-		"ASII.JK",
-		"BBCA.JK", 
-		"BBNI.JK",
-		"BBRI.JK",
-		"BBTN.JK",
-		"BMRI.JK",
-		"BSDE.JK",
-		"INDF.JK",
-		"JPFA.JK",
-		"JSMR.JK",
-		"KLBF.JK",
-		"PGAS.JK",
-		"PJAA.JK",
-		"PPRO.JK",
-		"SIDO.JK",
-		"SMGR.JK",
-		"TINS.JK",
-		"TLKM.JK",
-		"UNTR.JK",
-		"UNVR.JK",
-		"WIKA.JK",
-		"WSKT.JK",
-		"WTON.JK"
+    "AALI.JK",
+    "ADHI.JK",
+    "ASII.JK",
+    "BBCA.JK", 
+    "BBNI.JK",
+    "BBRI.JK",
+    "BBTN.JK",
+    "BMRI.JK",
+    "BSDE.JK",
+    "INDF.JK",
+    "JPFA.JK",
+    "JSMR.JK",
+    "KLBF.JK",
+    "PGAS.JK",
+    "PJAA.JK",
+    "PPRO.JK",
+    "SIDO.JK",
+    "SMGR.JK",
+    "TINS.JK",
+    "TLKM.JK",
+    "UNTR.JK",
+    "UNVR.JK",
+    "WIKA.JK",
+    "WSKT.JK",
+    "WTON.JK"
 ]
 
 # check https://wrds-www.wharton.upenn.edu/ for U.S. index constituents
@@ -102,7 +106,7 @@ DOW_30_TICKER = [
     "AAPL",
     "MSFT",
     "JPM",
-    "V",
+#    "V",
     "RTX",
     "PG",
     "GS",
@@ -128,7 +132,7 @@ DOW_30_TICKER = [
     "MMM",
     "PFE",
     "WBA",
-    "DD",
+    "DD"
 ]
 
 # Nasdaq 100 constituents at 2019/01
@@ -232,7 +236,7 @@ NAS_100_TICKER = [
     "VRSN",
     "LULU",
     "WLTW",
-    "UAL",
+    "UAL"
 ]
 
 # SP 500 constituents at 2019
@@ -737,7 +741,7 @@ SP_500_TICKER = [
     "YUM",
     "ZBH",
     "ZION",
-    "ZTS",
+    "ZTS"
 ]
 
 # Hang Seng Index constituents at 2019/01
@@ -791,7 +795,7 @@ HSI_50_TICKER = [
     "2382.HK",
     "1093.HK",
     "1177.HK",
-    "2313.HK",
+    "2313.HK"
 ]
 
 # www.csindex.com.cn, for SSE and CSI adjustments
@@ -858,7 +862,7 @@ SSE_50_TICKER = [
     "600588.SS",
     "601658.SS",
     "601816.SS",
-    "603160.SS",
+    "603160.SS"
 ]
 
 # CSI 300 Index constituents at 2019
@@ -1162,7 +1166,7 @@ CSI_300_TICKER = [
     "300433.SZ",
     "300498.SZ",
     "300601.SZ",
-    "300628.SZ",
+    "300628.SZ"
 ]
 
 # Check https://www.bnains.org/archives/histocac/compocac.php for CAC 40 constituents
@@ -1207,7 +1211,7 @@ CAC_40_TICKER = [
     "FR.PA",
     "VIE.PA",
     "DG.PA",
-    "VIV.PA",
+    "VIV.PA"
 ]
 
 # DAX 30 constituents at 2021/02

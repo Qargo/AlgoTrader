@@ -2,13 +2,12 @@
 import pandas as pd
 import numpy as np
 import time
-import gym
 
 # RL models from stable-baselines
 # from stable_baselines import SAC
 # from stable_baselines import TD3
 
-from stable_baselines3.ppo import MlpPolicy
+# from stable_baselines3.ppo import MlpPolicy
 from stable_baselines3.common.vec_env import DummyVecEnv
 
 from stable_baselines3 import DDPG
@@ -24,11 +23,11 @@ from finrl.env.env_stocktrading import StockTradingEnv
 from stable_baselines3 import A2C
 from stable_baselines3 import PPO
 from stable_baselines3 import TD3
-from stable_baselines3.td3.policies import MlpPolicy
-from stable_baselines3.common.noise import (
-    NormalActionNoise,
-    OrnsteinUhlenbeckActionNoise,
-)
+# from stable_baselines3.td3.policies import MlpPolicy
+# from stable_baselines3.common.noise import (
+#    NormalActionNoise,
+#    OrnsteinUhlenbeckActionNoise,
+# )
 
 from stable_baselines3 import SAC
 
@@ -45,12 +44,10 @@ NOISE = {
 
 class DRLAgent:
     """Provides implementations for DRL algorithms
-
     Attributes
     ----------
         env: gym environment class
             user-defined class
-
     Methods
     -------
         train_PPO()
@@ -87,6 +84,13 @@ class DRLAgent:
 #                break
         return account_memory[0], actions_memory[0]
 
+    @staticmethod
+    def load_model(model_name, path):
+        if model_name not in MODELS:
+            raise NotImplementedError()
+        model = MODELS[model_name].load(path)
+        return model
+
     def __init__(self, env):
         self.env = env
 
@@ -119,6 +123,9 @@ class DRLAgent:
             **model_kwargs,
         )
         return model
+
+    def save_model(self, model, path):
+        model.save(path)
 
     def train_model(self, model, tb_log_name, total_timesteps=5000):
         model = model.learn(total_timesteps=total_timesteps, tb_log_name=tb_log_name)
@@ -176,7 +183,7 @@ class DRLEnsembleAgent:
                 train_period,val_test_period,
                 rebalance_window, validation_window,
                 stock_dim,
-                hmax,                
+                hmax,
                 initial_amount,
                 buy_cost_pct,
                 sell_cost_pct,
@@ -460,7 +467,4 @@ class DRLEnsembleAgent:
         df_summary.columns = ['Iter','Val Start','Val End','Model Used','A2C Sharpe','PPO Sharpe','DDPG Sharpe']
 
         return df_summary
-
-
-
 

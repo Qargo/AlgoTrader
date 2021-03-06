@@ -1,5 +1,8 @@
 import pandas as pd
+import numpy as np
 import matplotlib
+import matplotlib.pyplot as plt
+from sklearn import preprocessing
 
 matplotlib.use("Agg")
 import datetime
@@ -10,7 +13,7 @@ from finrl.preprocessing.preprocessors import FeatureEngineer
 from finrl.preprocessing.data import data_split
 from finrl.env.env_stocktrading import StockTradingEnv
 from finrl.model.models import DRLAgent
-from finrl.trade.backtest import backtest_stats
+from finrl.trade.backtest import BackTestStats
 
 
 def train_one():
@@ -21,9 +24,8 @@ def train_one():
     df = YahooDownloader(
         start_date=config.START_DATE,
         end_date=config.END_DATE,
-        ticker_list=config.MULTIPLE_STOCK_TICKER,
+        ticker_list=config.DOW_30_TICKER,
     ).fetch_data()
-#    df = pd.read_csv('20210213-18h05.csv')
     print("==============Start Feature Engineering===========")
     fe = FeatureEngineer(
         use_technical_indicator=True,
@@ -34,19 +36,9 @@ def train_one():
 
     processed = fe.preprocess_data(df)
 
-    # Training & Trade data split
+    # Training & Trading data split
     train = data_split(processed, config.START_DATE, config.START_TRADE_DATE)
     trade = data_split(processed, config.START_TRADE_DATE, config.END_DATE)
-
-    # data normalization
-    # feaures_list = list(train.columns)
-    # feaures_list.remove('date')
-    # feaures_list.remove('tic')
-    # feaures_list.remove('close')
-    # print(feaures_list)
-    # data_normaliser = preprocessing.StandardScaler()
-    # train[feaures_list] = data_normaliser.fit_transform(train[feaures_list])
-    # trade[feaures_list] = data_normaliser.fit_transform(trade[feaures_list])
 
     # calculate state action space
     stock_dimension = len(train.tic.unique())
@@ -84,19 +76,9 @@ def train_one():
         model=model_sac, tb_log_name="sac", total_timesteps=80000
     )
 
-    print("==============Save Trained Model==============")
-    path = "./" + config.TRAINED_MODEL_DIR + "/trained_sac"
-    agent.save_model(model=trained_sac, path=path)
-
-    print("=============Delete Trained Model=============")
-    del trained_sac
-
-    print("==============Load Saved Model================")
-    saved_model = DRLAgent.load_model(model_name="sac", path=path)
-
     print("==============Start Trading===========")
     df_account_value, df_actions = DRLAgent.DRL_prediction(
-        model=saved_model, environment=e_trade_gym
+        model=trained_sac, test_data=trade, test_env=env_trade, test_obs=obs_trade
     )
     df_account_value.to_csv(
         "./" + config.RESULTS_DIR + "/df_account_value_" + now + ".csv"
@@ -104,6 +86,6 @@ def train_one():
     df_actions.to_csv("./" + config.RESULTS_DIR + "/df_actions_" + now + ".csv")
 
     print("==============Get Backtest Results===========")
-    perf_stats_all = backtest_stats(account_value=df_account_value)
+    perf_stats_all = BackTestStats(df_account_value)
     perf_stats_all = pd.DataFrame(perf_stats_all)
     perf_stats_all.to_csv("./" + config.RESULTS_DIR + "/perf_stats_all_" + now + ".csv")
