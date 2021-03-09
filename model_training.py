@@ -15,7 +15,7 @@ sys.path.append("FinRL-Library")
 
 from config import config
 from finrl.env.env_stocktrading import StockTradingEnv
-from algotrader.model.models import DRLAgent
+from algotrader.model.agent import Agent
 
 
 def train_a2c(agent):
@@ -172,7 +172,7 @@ def main():
     # DRL algorithms by adapting these DRL algorithms.Instead of installing
     # FinRL lib I have included the source code and created my own version.
 
-    agent = DRLAgent(env=env_training)
+    agent = Agent(env=env_training)
 
     print("======================================================")
     print("Please select which training you want me to perform.")

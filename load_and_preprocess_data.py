@@ -8,9 +8,6 @@ loads financial data for all stocks specified in config file and
 add technical indicators. Split the dataset on training and testing set.
 """
 # import all libraries
-import pandas as pd
-import numpy as np
-import datetime
 import pickle
 
 import os
