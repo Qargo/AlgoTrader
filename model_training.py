@@ -11,7 +11,7 @@ import sys
 import warnings
 import pickle
 
-sys.path.append("FinRL-Library")
+sys.path.append("./FinRL-Library")
 
 from algotrader.config import config
 from algotrader.model.agent import Agent

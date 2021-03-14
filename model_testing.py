@@ -11,7 +11,7 @@ import warnings
 import pickle
 import pandas as pd
 
-sys.path.append("FinRL-Library")
+sys.path.append("./FinRL-Library")
 
 from algotrader.config import config
 from algotrader.model.agent import Agent
