@@ -13,9 +13,9 @@ import pickle
 
 sys.path.append("FinRL-Library")
 
-from config import config
-from finrl.env.env_stocktrading import StockTradingEnv
+from algotrader.config import config
 from algotrader.model.agent import Agent
+from finrl.env.env_stocktrading import StockTradingEnv
 
 
 def train_a2c(agent):

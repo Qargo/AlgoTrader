@@ -17,7 +17,7 @@ import warnings
 # add FinRL-Library path
 sys.path.append("./FinRL-Library")
 
-from config import config
+from algotrader.config import config
 from finrl.marketdata.yahoodownloader import YahooDownloader
 from finrl.preprocessing.preprocessors import FeatureEngineer
 from finrl.preprocessing.data import data_split

@@ -13,10 +13,10 @@ import pandas as pd
 
 sys.path.append("FinRL-Library")
 
-from config import config
+from algotrader.config import config
+from algotrader.model.agent import Agent
 from finrl.env.env_stocktrading import StockTradingEnv
 from finrl.trade.backtest import backtest_stats
-from algotrader.model.agent import Agent
 
 
 def test_model(model, environment, name):
