@@ -4,8 +4,11 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/FinRL-Library" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
+      <excludeFolder url="file://$MODULE_DIR$/results" />
+      <excludeFolder url="file://$MODULE_DIR$/tensorboard_log" />
+      <excludeFolder url="file://$MODULE_DIR$/trained_models" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.6 (AlgoTrader)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.6" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PyDocumentationSettings">

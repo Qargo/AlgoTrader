@@ -1,6 +1,9 @@
 # Custom config
-#results/
-
+results/
+datasets/
+tensorboard_log/
+trained_models/
+docs/
 
 # remove DS_Store
 **/.DS_Store
@@ -112,7 +115,7 @@ celerybeat.pid
 # .env
 # .venv
 # env/
-# venv/
+venv/
 # ENV/
 # env.bak/
 # venv.bak/
@@ -136,7 +139,7 @@ dmypy.json
 .pyre/
 
 # PyCharm
-.idea
+# .idea
 
 *events.out.tfevents.*
 *.csv
